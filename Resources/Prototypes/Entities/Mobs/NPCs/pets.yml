@@ -935,3 +935,54 @@
   - type: Loadout
     prototypes: [ MobPollyGear ]
 
+  name: SCP-999
+  parent: [SimpleMobBase, StripableInventoryBase]
+  id: scp999
+  description: Soooo cute it could make your heart explode into pieces.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 3
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Pets/tickleblob.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: sloth
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Inventory
+    speciesId: scp999
+    templateId: pet
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: tickleblob
+      Critical:
+        Base: tickleblob_inactive
+      Dead:
+        Base: tickleblob_inactive
+  - type: InteractionPopup
+    successChance: 50
+    interactSuccessString: petting-success-sloth
+    interactFailureString: petting-failure-sloth
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: SlowAccent
+  - type: Tag
+    tags:
+    - VimPilot
